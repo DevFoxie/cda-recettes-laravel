@@ -1,0 +1,213 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CDA Laravel API",
+        "description": "API de recettes de cuisine",
+        "contact": {
+            "email": "hakim@garage404.com"
+        },
+        "license": {
+            "name": "Licence API",
+            "url": "https://www.monapi.com/licence"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/recipes": {
+            "get": {
+                "summary": "Récupérer la liste de toutes les recettes",
+                "operationId": "183ea7166b721b122b92da8e3882bbdb",
+                "responses": {
+                    "200": {
+                        "description": "Liste des recettes"
+                    }
+                }
+            }
+        },
+        "/api/recipe/{id}": {
+            "get": {
+                "summary": "Récupérer une recette par son ID",
+                "operationId": "39963b01987acd93f03a7830dc81e8cc",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la recette",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Recette"
+                    },
+                    "404": {
+                        "description": "Recette non trouvée"
+                    }
+                }
+            }
+        },
+        "/api/add": {
+            "post": {
+                "summary": "Ajouter une recette",
+                "operationId": "008c8c57877875647595af459f6a3885",
+                "requestBody": {
+                    "description": "Données de la recette",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "ingredients",
+                                    "preparationTime",
+                                    "cookingTime",
+                                    "serves"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Poulet au curry"
+                                    },
+                                    "ingredients": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Poulet, curry, riz"
+                                    },
+                                    "preparationTime": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "20 minutes"
+                                    },
+                                    "cookingTime": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "30 minutes"
+                                    },
+                                    "serves": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "example": "4"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Recette créée"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            }
+        },
+        "/api/modify/{id}": {
+            "put": {
+                "summary": "Modifier une recette",
+                "operationId": "a25c889d517e369d165fe050b8523426",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la recette",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Données de la recette",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "ingredients",
+                                    "preparationTime",
+                                    "cookingTime",
+                                    "serves"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Poulet au curry"
+                                    },
+                                    "ingredients": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Poulet, curry, riz"
+                                    },
+                                    "preparationTime": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "20 minutes"
+                                    },
+                                    "cookingTime": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "30 minutes"
+                                    },
+                                    "serves": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "example": "4"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Recette modifiée"
+                    },
+                    "404": {
+                        "description": "Recette non trouvée"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            }
+        },
+        "/api/delete/{id}": {
+            "delete": {
+                "summary": "Supprimer une recette",
+                "operationId": "19eac717fc59b128163ed2c745545cc2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la recette",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Recette supprimée"
+                    },
+                    "404": {
+                        "description": "Recette non trouvée"
+                    }
+                }
+            }
+        }
+    }
+}
