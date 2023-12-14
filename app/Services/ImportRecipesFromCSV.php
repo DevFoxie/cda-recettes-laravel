@@ -5,7 +5,8 @@ namespace App\Services;
 use League\Csv\Reader;
 use App\Services\AbstractImporter;
 
-class ImportRecipesFromCsv extends AbstractImporter implements ImporterInterface
+
+class ImportRecipesFromCSV extends AbstractImporter implements ImporterInterface
 {
     protected function parseRecord(array $record)
     {
@@ -26,6 +27,7 @@ class ImportRecipesFromCsv extends AbstractImporter implements ImporterInterface
         $records = iterator_to_array($csv->getRecords());
 
         if ($this->importerPersistence) {
+            $this->setImporterPersistence($this->importerPersistence);
             foreach ($records as $record) {
                 $this->importerPersistence->persist($record);
             }
@@ -33,4 +35,5 @@ class ImportRecipesFromCsv extends AbstractImporter implements ImporterInterface
 
         return $records;
     }
+
 }

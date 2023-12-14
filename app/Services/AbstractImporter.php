@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\Services\ImporterInterface;
+use App\Repositories\ImporterPersistenceInterface;
+use App\Repositories\ImporterPersistenceAwareInterface;
 use Illuminate\Support\Facades\File;
 
 // Classe Abstraite pour les importers
@@ -10,7 +11,7 @@ abstract class AbstractImporter implements ImporterInterface, ImporterPersistenc
 {
     abstract protected function parseRecord(array $record);
 
-    protected $importerPersistence;
+    protected ImporterPersistenceInterface $importerPersistence;
 
     public function getRecipes($filename)
     {

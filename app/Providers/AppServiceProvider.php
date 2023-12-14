@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
             __DIR__.'/../../config/importer.php', 'importer'
         );
 
-        $this->app->singleton(ImporterPersistenceMysql::class, function ($app) {
+        $this->app->bind(ImporterPersistenceMysql::class, function ($app) {
             return new ImporterPersistenceMysql();
         });
     }

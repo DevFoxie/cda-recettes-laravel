@@ -3,20 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Recipe;
-
-interface RecipeRepositoryInterface
-{
-    public function getAllRecipes();
-
-    public function getRecipeById(int $id);
-
-    public function addRecipe(array $recipeData);
-
-    public function updateRecipe(int $id, array $recipeData);
-
-    public function deleteRecipe(int $id);
-}
-
+use App\Repositories\RecipeRepositoryInterface;
 class RecipeRepository implements RecipeRepositoryInterface
 {
     public function getAllRecipes()

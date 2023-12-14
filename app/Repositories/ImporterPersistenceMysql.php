@@ -2,18 +2,20 @@
 
 namespace App\Repositories;
 
-use App\Models\Recipe;
-
-interface ImporterPersistenceInterface
-{
-    public function saveRecipe(array $recipeData);
-}
+use App\Repositories\RecipeRepositoryInterface;
 
 class ImporterPersistenceMysql implements ImporterPersistenceInterface
 {
+    protected $recipeRepository;
+
+    public function __construct(RecipeRepositoryInterface $recipeRepository)
+    {
+        $this->recipeRepository = $recipeRepository;
+    }
+
     public function saveRecipe(array $recipeData)
     {
-        return Recipe::create($recipeData)->toArray();
+        return $this->recipeRepository->addRecipe($recipeData);
     }
 
     public function persist(array $recipes)
